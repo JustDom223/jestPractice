@@ -85,8 +85,30 @@ test('Calculator: add 9 numbers together', () => {
     expect(calculator.subtract(100, 1, 2, 3, 4, 5, 6, 7, 8, 9)).toBe(55);
 });
 test('Calculator: subtract numbers but deal with an accidental letter', () => {
-    expect(calculator.subtract(...backwardsNumberArray)).toBe(-29);
+    expect(calculator.subtract(backwardsNumberArray)).toBe(-29);
 });
-test('Calculator: Testing nested arrays', () => {
+test('Calculator: testing nested arrays', () => {
     expect(calculator.subtract(backwardsNestedNumberArray)).toBe(-29);
 });
+//Divide
+test('Calculator: divide first number by second number', () => {
+    expect(calculator.divide(2, 2)).toBe(1);
+});
+test('Calculator: divide number by negative', () => {
+    expect(calculator.divide(2, -2)).toBe(-1);
+});
+test('Calculator: divide number and return a float', () => {
+    expect(calculator.divide(10, 13)).toBe(0.7692307692307693);
+});
+test('Calculator: divide by 0', () => {
+    expect(calculator.divide(2, 0)).toBe(Infinity);
+});
+test('Calculator: divide each number by the next', () => {
+    expect(calculator.divide(1000, 100, 10)).toBe(1);
+});
+test('Calculator: divide, flag a letter as an error', () => {
+    expect(() => calculator.divide(backwardsNumberArray)).toThrow(Error);
+});
+// test('Calculator: testing nested arrays', () => {
+//     expect(calculator.subtract(backwardsNestedNumberArray)).toBe(-29);
+// });

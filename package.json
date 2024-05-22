@@ -15,7 +15,6 @@
         "test": "jest",
         "watch": "jest --watch *.js"
     },
-
     "prettier": {
         "tabWidth": 4,
         "singleQuote": true

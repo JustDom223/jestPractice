@@ -23,12 +23,23 @@ export const calculator = {
     subtract: function (...args) {
         const flatArgs = args.flat(Infinity);
         const filteredNumbers = flatArgs.filter((element) => !isNaN(element));
-        console.log(filteredNumbers);
-        let accumulator = filteredNumbers[0];
+        let difference = filteredNumbers[0];
 
         for (let i = 1; i < filteredNumbers.length; ++i) {
-            accumulator = accumulator - filteredNumbers[i];
+            difference = difference - filteredNumbers[i];
         }
-        return accumulator;
+        return difference;
+    },
+    divide: function (...args) {
+        if (args.some((element) => isNaN(element))) {
+            console.log('error');
+            throw new Error('There is a letter in the inputs');
+        } else {
+            let quotient = args[0];
+            args.splice(1).forEach((element) => {
+                quotient = quotient / element;
+            });
+            return quotient;
+        }
     },
 };
