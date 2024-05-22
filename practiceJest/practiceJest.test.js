@@ -109,6 +109,19 @@ test('Calculator: divide each number by the next', () => {
 test('Calculator: divide, flag a letter as an error', () => {
     expect(() => calculator.divide(backwardsNumberArray)).toThrow(Error);
 });
-// test('Calculator: testing nested arrays', () => {
-//     expect(calculator.subtract(backwardsNestedNumberArray)).toBe(-29);
-// });
+//Multiply
+test('Calculator: Multiply a by b', () => {
+    expect(calculator.multiply(4, 6)).toBe(24);
+});
+test('Calculator: Multiply each number by the next', () => {
+    expect(calculator.multiply(4, 6, 5, 3)).toBe(360);
+});
+test('Calculator: add 9 numbers together', () => {
+    expect(calculator.multiply(100, 1, 2, 3, 4, 5, 6, 7, 8, 9)).toBe(36288000);
+});
+test('Calculator: subtract numbers but deal with an accidental letter', () => {
+    expect(calculator.multiply(backwardsNumberArray)).toBe(604800);
+});
+test('Calculator: testing nested arrays', () => {
+    expect(calculator.multiply(backwardsNestedNumberArray)).toBe(604800);
+});

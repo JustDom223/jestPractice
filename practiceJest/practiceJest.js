@@ -23,12 +23,9 @@ export const calculator = {
     subtract: function (...args) {
         const flatArgs = args.flat(Infinity);
         const filteredNumbers = flatArgs.filter((element) => !isNaN(element));
-        let difference = filteredNumbers[0];
-
-        for (let i = 1; i < filteredNumbers.length; ++i) {
-            difference = difference - filteredNumbers[i];
-        }
-        return difference;
+        return filteredNumbers.reduce(
+            (difference, current) => difference - current,
+        );
     },
     divide: function (...args) {
         if (args.some((element) => isNaN(element))) {
@@ -41,5 +38,13 @@ export const calculator = {
             });
             return quotient;
         }
+    },
+    multiply: function (...args) {
+        const flatArgs = args.flat(Infinity);
+        const filteredNumbers = flatArgs.filter((element) => !isNaN(element));
+        return filteredNumbers.reduce(
+            (accumulator, current) => accumulator * current,
+            1,
+        );
     },
 };
