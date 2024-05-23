@@ -4,6 +4,7 @@ import {
     capitalize,
     reverseString,
     caesarCipher,
+    analyzeArray,
 } from './practiceJest';
 
 //Tests for capitalize function
@@ -59,7 +60,8 @@ test('reverseString: mixed sentence with numbers and symbols', () => {
 });
 
 // Tests for calculator object
-const numberArray = [1, 2, 3, 4, 5, 'A', 7, 8, 9, 10];
+const numberArrayWithLetter = [1, 2, 3, 4, 5, 'A', 7, 8, 9, 10];
+const numberArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const backwardsNumberArray = [10, 9, 8, 7, 'A', 5, 4, 3, 2, 1];
 const backwardsNestedNumberArray = [10, 9, 8, 7, 'A', 5, 4, 3, 2, 1];
 const nestedNumberArray = [1, [2, [3, 4], 5, 'A', [7, 8], 9], 10];
@@ -75,7 +77,7 @@ test('Calculator: add 9 numbers together', () => {
     expect(calculator.add(1, 2, 3, 4, 5, 6, 7, 8, 9)).toBe(45);
 });
 test('Calculator: add numbers but deal with an accidental letter', () => {
-    expect(calculator.add(numberArray)).toBe(49);
+    expect(calculator.add(numberArrayWithLetter)).toBe(49);
 });
 test('Calculator: Testing nested arrays', () => {
     expect(calculator.add(nestedNumberArray)).toBe(49);
@@ -167,4 +169,49 @@ test('Caesar Cipher: Testing punctuation', () => {
     expect(caesarCipher('Help, they are coming!', 11)).toBe(
         'Spwa, espj lcp nzxtyr!',
     );
+});
+//Analyze Array
+//length
+test('Analyze array: Return how many inputs were put in', () => {
+    const result = analyzeArray(1, 11);
+    expect(result.length).toBe(2);
+});
+test('Analyze array: Return how many inputs were put in', () => {
+    const result = analyzeArray(1, 11, 3);
+    expect(result.length).toBe(3);
+});
+test('Analyze array: Return length of any array', () => {
+    const result = analyzeArray(numberArrayWithLetter);
+    expect(result.length).toBe(10);
+});
+test('Analyze array: Flatten nested arrays and count total length', () => {
+    const result = analyzeArray(nestedNumberArray);
+    expect(result.length).toBe(10);
+});
+//find Min
+test('Analyze array: Find the lowest number in the array', () => {
+    const result = analyzeArray(numberArray);
+    expect(result.min).toBe(1);
+});
+test('Analyze array: Check that the min can be found even if the array contains letters', () => {
+    const result = analyzeArray(numberArrayWithLetter);
+    expect(result.min).toBe(1);
+});
+//find Max
+test('Analyze array: Find the highest number in the array', () => {
+    const result = analyzeArray(numberArray);
+    expect(result.max).toBe(10);
+});
+test('Analyze array: Check that the max can be found even if the array contains letters', () => {
+    const result = analyzeArray(numberArrayWithLetter);
+    expect(result.max).toBe(10);
+});
+//find average
+test('Analyze array: Check average of array', () => {
+    const result = analyzeArray(numberArray);
+    expect(result.average).toBe(5.5);
+});
+test('Analyze array: Check average of array works with letters in the array', () => {
+    const result = analyzeArray(numberArrayWithLetter);
+    expect(result.average).toBe(5.444444444444445);
 });

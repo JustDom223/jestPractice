@@ -108,3 +108,32 @@ function returnLetter(originalLetter, key) {
 function isLetter(char) {
     return /^[a-zA-Z]$/.test(char);
 }
+
+export function analyzeArray(...args) {
+    const flatArgs = args.flat(Infinity);
+    const filteredNumbers = flatArgs.filter((element) => !isNaN(element));
+
+    let minNum = flatArgs.reduce(
+        (accumulator, currentValue) =>
+            currentValue < accumulator ? currentValue : accumulator,
+        flatArgs[0],
+    );
+    let maxNum = flatArgs.reduce(
+        (accumulator, currentValue) =>
+            //  if this  > than this    return this  else return this
+            currentValue > accumulator ? currentValue : accumulator,
+        flatArgs[0],
+    );
+    let arraySum = filteredNumbers.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        0,
+    );
+    let arrayAverage = arraySum / filteredNumbers.length;
+
+    return {
+        average: arrayAverage,
+        min: minNum,
+        max: maxNum,
+        length: flatArgs.length,
+    };
+}
