@@ -215,3 +215,13 @@ test('Analyze array: Check average of array works with letters in the array', ()
     const result = analyzeArray(numberArrayWithLetter);
     expect(result.average).toBe(5.444444444444445);
 });
+
+//testing for entire object
+test('Return correct result for array with mixed integers', () => {
+    expect(analyzeArray([-4, 15, 2, 7, -10])).toEqual({
+        average: 2,
+        min: -10,
+        max: 15,
+        length: 5,
+    });
+});
