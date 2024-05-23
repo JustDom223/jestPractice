@@ -1,4 +1,10 @@
-import { calculator, capitalize, reverseString } from './practiceJest';
+import { test } from '@jest/globals';
+import {
+    calculator,
+    capitalize,
+    reverseString,
+    caesarCipher,
+} from './practiceJest';
 
 //Tests for capitalize function
 test('capitalize: take string and return it with the first letter capitalized', () => {
@@ -57,6 +63,7 @@ const numberArray = [1, 2, 3, 4, 5, 'A', 7, 8, 9, 10];
 const backwardsNumberArray = [10, 9, 8, 7, 'A', 5, 4, 3, 2, 1];
 const backwardsNestedNumberArray = [10, 9, 8, 7, 'A', 5, 4, 3, 2, 1];
 const nestedNumberArray = [1, [2, [3, 4], 5, 'A', [7, 8], 9], 10];
+
 //Add
 test('Calculator: add 2 numbers together', () => {
     expect(calculator.add(1, 2)).toBe(3);
@@ -90,6 +97,7 @@ test('Calculator: subtract numbers but deal with an accidental letter', () => {
 test('Calculator: testing nested arrays', () => {
     expect(calculator.subtract(backwardsNestedNumberArray)).toBe(-29);
 });
+
 //Divide
 test('Calculator: divide first number by second number', () => {
     expect(calculator.divide(2, 2)).toBe(1);
@@ -109,6 +117,7 @@ test('Calculator: divide each number by the next', () => {
 test('Calculator: divide, flag a letter as an error', () => {
     expect(() => calculator.divide(backwardsNumberArray)).toThrow(Error);
 });
+
 //Multiply
 test('Calculator: Multiply a by b', () => {
     expect(calculator.multiply(4, 6)).toBe(24);
@@ -124,4 +133,38 @@ test('Calculator: subtract numbers but deal with an accidental letter', () => {
 });
 test('Calculator: testing nested arrays', () => {
     expect(calculator.multiply(backwardsNestedNumberArray)).toBe(604800);
+});
+
+//Caesar Cipher
+test('Caesar Cipher: Shift d three positions to g', () => {
+    expect(caesarCipher('d', 3)).toBe('g');
+});
+
+test('Caesar Cipher: Shift r three positions to u', () => {
+    expect(caesarCipher('r', 3)).toBe('u');
+});
+test('Caesar Cipher: Shift dom three positions to grp', () => {
+    expect(caesarCipher('dom', 3)).toBe('grp');
+});
+test('Caesar Cipher: Testing capital letter', () => {
+    expect(caesarCipher('Dom', 3)).toBe('Grp');
+});
+test('Caesar Cipher: Testing randoms capital letters', () => {
+    expect(caesarCipher('DoM', 3)).toBe('GrP');
+});
+test('Caesar Cipher: Testing letters would go over the edge of the array', () => {
+    expect(caesarCipher('xYZ', 3)).toBe('aBC');
+});
+test('Caesar Cipher: Testing a long string of random letters', () => {
+    expect(caesarCipher('asdAWVFWAEFVAWDfaeavsdfv', 3)).toBe(
+        'dvgDZYIZDHIYDZGidhdyvgiy',
+    );
+});
+test('Caesar Cipher: Testing the ability to change the key', () => {
+    expect(caesarCipher('abCd', 25)).toBe('zaBc');
+});
+test('Caesar Cipher: Testing punctuation', () => {
+    expect(caesarCipher('Help, they are coming!', 11)).toBe(
+        'Spwa, espj lcp nzxtyr!',
+    );
 });
